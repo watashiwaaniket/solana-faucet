@@ -5,12 +5,11 @@ import '@solana/wallet-adapter-react-ui/styles.css'
 import Airdrop from './components/Airdrop'
 
 
-function App() {
- 
 
+function App() {
   return (
     <>
-    <ConnectionProvider endpoint={'https://api.devnet.solana.com'}>
+    <ConnectionProvider endpoint={import.meta.env.VITE_ALCHEMY_DEVNET_RPC_URL}>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
           <div className='w-[560px] h-[600px] flex flex-col items-center justify-center bg-violet-400 rounded-3xl p-4 text-slate-900 border-2 border-orange-400'>

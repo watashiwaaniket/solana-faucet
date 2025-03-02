@@ -10,9 +10,19 @@ export default function Airdrop() {
         setAmount(event.target.value);
     }
 
-    function sendAirdrop(){
-        console.log(`airdrop amout requested is ${amount}ETH`)
-        connection.requestAirdrop(wallet.publicKey, amount)
+    async function sendAirdrop(){
+        if(!wallet.publicKey){
+            alert('Connect your wallet first!')
+            return
+        }
+        try{
+            await connection.requestAirdrop(wallet.publicKey, amount*1000000000)
+            alert(`airdropped ${amount}SOL`)
+        } catch(e){
+            console.error("Airdrop Failed!", e);
+            alert('Airdrop failed! Please try again or the solana faucet might have run dry')
+        }
+        
     }
 
     return(
